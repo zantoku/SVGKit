@@ -16,10 +16,10 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "Node.h"
+#import "DOMNode.h"
 @class Element;
 
-@interface Attr : Node
+@interface Attr : DOMNode
 
 /*! NB: The official DOM spec FAILS TO SPECIFY what the value of "name" is */
 @property(nonatomic,retain,readonly) NSString* name;

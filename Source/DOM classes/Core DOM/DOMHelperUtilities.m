@@ -10,7 +10,7 @@
 /*! This useful method provides both the DOM level 1 and the DOM level 2 implementations of searching the tree for a node - because THEY ARE DIFFERENT
  yet very similar
  */
-+(void) privateGetElementsByName:(NSString*) name inNamespace:(NSString*) namespaceURI childrenOfElement:(Node*) parent addToList:(NodeList*) accumulator
++(void) privateGetElementsByName:(NSString*) name inNamespace:(NSString*) namespaceURI childrenOfElement:(DOMNode*) parent addToList:(NodeList*) accumulator
 {
 	/** According to spec, this is only valid for ELEMENT nodes */
 	if( [parent isKindOfClass:[Element class]] )
@@ -49,13 +49,13 @@
 		}
 	}
 	
-	for( Node* childNode in parent.childNodes )
+	for( DOMNode* childNode in parent.childNodes )
 	{
 		[self privateGetElementsByName:name inNamespace:namespaceURI childrenOfElement:childNode addToList:accumulator];
 	}
 }
 
-+(Element*) privateGetElementById:(NSString*) idValue childrenOfElement:(Node*) parent
++(Element*) privateGetElementById:(NSString*) idValue childrenOfElement:(DOMNode*) parent
 {
 	/** According to spec, this is only valid for ELEMENT nodes */
 	if( [parent isKindOfClass:[Element class]] )
@@ -73,7 +73,7 @@
 #endif
 	}
 	
-	for( Node* childNode in parent.childNodes )
+	for( DOMNode* childNode in parent.childNodes )
 	{
 		Element* childResult = [self privateGetElementById:idValue childrenOfElement:childNode];
 		

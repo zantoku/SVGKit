@@ -9,9 +9,11 @@
 #import "DOMDocument.h"
 #import "DOMComment.h"
 #import "DOMText.h"
+#import "DOMNode.h"
 
 // Uncomment the following lines if you need DOM spec naming compliance
 /*
+@compatibility_alias Node DOMNode;
 @compatibility_alias Document DOMDocument;
 @compatibility_alias Comment DOMComment;
 @compatibility_alias Text DOMText;

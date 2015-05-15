@@ -87,7 +87,7 @@
 
 /** implementation of allPrefixesByNamespace - stores "namespace string" : "ARRAY of prefix strings"
  */
-+(void) accumulateNamespacesForNode:(Node*) node intoDictionary:(NSMutableDictionary*) output
++(void) accumulateNamespacesForNode:(DOMNode*) node intoDictionary:(NSMutableDictionary*) output
 {
 	/**
 	 First, find all the attributes that declare a new Namespace at this point */
@@ -98,7 +98,7 @@
 	
 	for( NSString* xmlnsNodeName in xmlnsNodemap )
 	{
-		Node* namespaceDeclaration = [xmlnsNodemap objectForKey:xmlnsNodeName];
+		DOMNode* namespaceDeclaration = [xmlnsNodemap objectForKey:xmlnsNodeName];
 		
 		NSMutableArray* prefixesForNamespace = [output objectForKey:namespaceDeclaration.nodeValue];
 		if( prefixesForNamespace == nil )
@@ -111,7 +111,7 @@
 			[prefixesForNamespace addObject:namespaceDeclaration.localName];
 	}
 	
-	for( Node* childNode in node.childNodes )
+	for( DOMNode* childNode in node.childNodes )
 	{
 		[self accumulateNamespacesForNode:childNode intoDictionary:output];
 	}

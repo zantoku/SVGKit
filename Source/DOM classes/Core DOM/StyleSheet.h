@@ -13,14 +13,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class Node;
+@class DOMNode;
 @class MediaList;
 
 @interface StyleSheet : NSObject
 
 @property(nonatomic,retain) NSString* type;
 @property(nonatomic) BOOL disabled;
-@property(nonatomic,retain) Node* ownerNode;
+@property(nonatomic,retain) DOMNode* ownerNode;
 @property(nonatomic,retain) StyleSheet* parentStyleSheet;
 @property(nonatomic,retain) NSString* href;
 @property(nonatomic,retain) NSString* title;

@@ -19,7 +19,7 @@
     [super dealloc];
 }
 
--(Node*) item:(NSUInteger) index
+-(DOMNode*) item:(NSUInteger) index
 {
 	return [self.internalArray objectAtIndex:index];
 }

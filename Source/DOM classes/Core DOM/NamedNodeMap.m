@@ -35,9 +35,9 @@
     [super dealloc];
 }
 
--(Node*) getNamedItem:(NSString*) name
+-(DOMNode*) getNamedItem:(NSString*) name
 {
-	Node* simpleResult = [self.internalDictionary objectForKey:name];
+	DOMNode* simpleResult = [self.internalDictionary objectForKey:name];
 	
 	if( simpleResult == nil )
 	{
@@ -63,22 +63,22 @@
 	return simpleResult;
 }
 
--(Node*) setNamedItem:(Node*) arg
+-(DOMNode*) setNamedItem:(DOMNode*) arg
 {
 	NSAssert( [[self.internalDictionaryOfNamespaces allKeys] count] < 1, @"WARNING: you are using namespaced attributes in parallel with non-namespaced. According to the DOM Spec, this leads to UNDEFINED behaviour. This is insane - you do NOT want to be doing this! Crashing deliberately...." );
 	
-	Node* oldNode = [self.internalDictionary objectForKey:arg.localName];
+	DOMNode* oldNode = [self.internalDictionary objectForKey:arg.localName];
 	
 	[self.internalDictionary setObject:arg forKey:arg.localName];
 	
 	return oldNode;
 }
 
--(Node*) removeNamedItem:(NSString*) name
+-(DOMNode*) removeNamedItem:(NSString*) name
 {
 	NSAssert( [[self.internalDictionaryOfNamespaces allKeys] count] < 1, @"WARNING: you are using namespaced attributes in parallel with non-namespaced. According to the DOM Spec, this leads to UNDEFINED behaviour. This is insane - you do NOT want to be doing this! Crashing deliberately...." );
 	
-	Node* oldNode = [self.internalDictionary objectForKey:name];
+	DOMNode* oldNode = [self.internalDictionary objectForKey:name];
 	
 	[self.internalDictionary removeObjectForKey:name];
 	
@@ -97,7 +97,7 @@
 	return count;
 }
 
--(Node*) item:(unsigned long) index
+-(DOMNode*) item:(unsigned long) index
 {
 	NSAssert(FALSE, @"This method is broken; Apple does not consistently return ordered values in dictionary.allValues. Apple DOES NOT SUPPORT ordered Maps/Hashes/Tables/Hashtables - we have to re-implement this wheel from scratch");
 	
@@ -120,7 +120,7 @@
 }
 
 // Introduced in DOM Level 2:
--(Node*) getNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName
+-(DOMNode*) getNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName
 {
 	NSMutableDictionary* namespaceDict = [self.internalDictionaryOfNamespaces objectForKey:namespaceURI];
 	
@@ -128,16 +128,16 @@
 }
 
 // Introduced in DOM Level 2:
--(Node*) setNamedItemNS:(Node*) arg
+-(DOMNode*) setNamedItemNS:(DOMNode*) arg
 {
 	return [self setNamedItemNS:arg inNodeNamespace:nil];
 }
 
 // Introduced in DOM Level 2:
--(Node*) removeNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName
+-(DOMNode*) removeNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName
 {
 	NSMutableDictionary* namespaceDict = [self.internalDictionaryOfNamespaces objectForKey:namespaceURI];
-	Node* oldNode = [namespaceDict objectForKey:localName];
+	DOMNode* oldNode = [namespaceDict objectForKey:localName];
 	
 	[namespaceDict removeObjectForKey:localName];
 	
@@ -146,7 +146,7 @@
 
 #pragma mark - MISSING METHOD FROM SVG Spec, without which you cannot parse documents (don't understand how they intended you to fulfil the spec without this method)
 
--(Node*) setNamedItemNS:(Node*) arg inNodeNamespace:(NSString*) nodesNamespace
+-(DOMNode*) setNamedItemNS:(DOMNode*) arg inNodeNamespace:(NSString*) nodesNamespace
 {
 	NSString* effectiveNamespace = arg.namespaceURI != nil ? arg.namespaceURI : nodesNamespace;
 	if( effectiveNamespace == nil )
@@ -160,7 +160,7 @@
 		namespaceDict = [NSMutableDictionary dictionary];
 		[self.internalDictionaryOfNamespaces setObject:namespaceDict forKey:effectiveNamespace];
 	}
-	Node* oldNode = [namespaceDict objectForKey:arg.localName];
+	DOMNode* oldNode = [namespaceDict objectForKey:arg.localName];
 	
 	[namespaceDict setObject:arg forKey:arg.localName];
 	

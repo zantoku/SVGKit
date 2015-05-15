@@ -10,8 +10,8 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "Node.h"
+#import "DOMNode.h"
 
-@interface DocumentFragment : Node
+@interface DocumentFragment : DOMNode
 
 @end

@@ -23,7 +23,7 @@
 
 #import "SVGDocument_Mutable.h" // so we can modify the SVGDocuments we're parsing
 
-#import "Node.h"
+#import "DOMNode.h"
 
 #import "SVGKSourceString.h"
 #import "SVGKSourceURL.h"
@@ -488,7 +488,7 @@ static void processingInstructionSAX (void * ctx,
 			[_stackOfParserExtensions addObject:subParser];
 			
 			/** Parser Extenstion creates a node for us */
-			Node* subParserResult = [subParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
+			DOMNode* subParserResult = [subParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
 			
 #if DEBUG_XML_PARSER
 			DDLogVerbose(@"[%@] tag: <%@:%@> id=%@ -- handled by subParser: %@", [self class], prefix, name, ([((Attr*)[attributeObjects objectForKey:@"id"]) value] != nil?[((Attr*)[attributeObjects objectForKey:@"id"]) value]:@"(none)"), subParser );
@@ -526,7 +526,7 @@ static void processingInstructionSAX (void * ctx,
 	[_stackOfParserExtensions addObject:eventualParser];
 	
 	/** Parser Extenstion creates a node for us */
-	Node* subParserResult = [eventualParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
+	DOMNode* subParserResult = [eventualParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
 	
 #if DEBUG_XML_PARSER
 	DDLogVerbose(@"[%@] tag: <%@:%@> id=%@ -- handled by subParser: %@", [self class], prefix, name, ([((Attr*)[attributeObjects objectForKey:@"id"]) value] != nil?[((Attr*)[attributeObjects objectForKey:@"id"]) value]:@"(none)"), eventualParser );

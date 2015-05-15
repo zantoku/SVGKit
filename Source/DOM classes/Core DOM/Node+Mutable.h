@@ -1,14 +1,14 @@
 /**
  Makes the writable properties all package-private, effectively
  */
-#import "Node.h"
+#import "DOMNode.h"
 
-@interface Node()
+@interface DOMNode()
 @property(nonatomic,retain,readwrite) NSString* nodeName;
 @property(nonatomic,retain,readwrite) NSString* nodeValue;
 
 @property(nonatomic,readwrite) DOMNodeType nodeType;
-@property(nonatomic,assign,readwrite) Node* parentNode;
+@property(nonatomic,assign,readwrite) DOMNode* parentNode;
 @property(nonatomic,retain,readwrite) NodeList* childNodes;
 @property(nonatomic,retain,readwrite) NamedNodeMap* attributes;
 

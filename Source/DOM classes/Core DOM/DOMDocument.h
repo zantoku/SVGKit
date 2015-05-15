@@ -55,7 +55,7 @@
 #import <Foundation/Foundation.h>
 
 /** ObjectiveC won't allow this: @class Node; */
-#import "Node.h"
+#import "DOMNode.h"
 @class Element;
 #import "Element.h"
 @class DOMComment;
@@ -75,7 +75,7 @@
 @class AppleSucksDOMImplementation;
 #import "AppleSucksDOMImplementation.h"
 
-@interface DOMDocument : Node
+@interface DOMDocument : DOMNode
 
 @property(nonatomic,retain,readonly) DocumentType*     doctype;
 @property(nonatomic,retain,readonly) AppleSucksDOMImplementation*  implementation;
@@ -94,7 +94,7 @@
 -(NodeList*) getElementsByTagName:(NSString*) data;
 
 // Introduced in DOM Level 2:
--(Node*) importNode:(Node*) importedNode deep:(BOOL) deep;
+-(DOMNode*) importNode:(DOMNode*) importedNode deep:(BOOL) deep;
 
 // Introduced in DOM Level 2:
 -(Element*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName __attribute__((ns_returns_retained));

@@ -99,32 +99,32 @@ typedef enum DOMNodeType
 	DOMNodeType_NOTATION_NODE                  = 12
 } DOMNodeType;
 
-@interface Node : NSObject
+@interface DOMNode : NSObject
 
 @property(nonatomic,retain,readonly) NSString* nodeName;
 @property(nonatomic,retain,readonly) NSString* nodeValue;
 	
 @property(nonatomic,readonly) DOMNodeType nodeType;
-@property(nonatomic,assign,readonly) Node* parentNode;
+@property(nonatomic,assign,readonly) DOMNode* parentNode;
 @property(nonatomic,retain,readonly) NodeList* childNodes;
-@property(nonatomic,assign,readonly) Node* firstChild;
-@property(nonatomic,assign,readonly) Node* lastChild;
-@property(nonatomic,assign,readonly) Node* previousSibling;
-@property(nonatomic,assign,readonly) Node* nextSibling;
+@property(nonatomic,assign,readonly) DOMNode* firstChild;
+@property(nonatomic,assign,readonly) DOMNode* lastChild;
+@property(nonatomic,assign,readonly) DOMNode* previousSibling;
+@property(nonatomic,assign,readonly) DOMNode* nextSibling;
 @property(nonatomic,retain,readonly) NamedNodeMap* attributes; /*< NB: according to DOM Spec, this is null if the Node is NOT subclassed as an Element */
 
 // Modified in DOM Level 2:
 @property(nonatomic,assign,readonly) DOMDocument* ownerDocument;
 
--(Node*) insertBefore:(Node*) newChild refChild:(Node*) refChild;
+-(DOMNode*) insertBefore:(DOMNode*) newChild refChild:(DOMNode*) refChild;
 
--(Node*) replaceChild:(Node*) newChild oldChild:(Node*) oldChild;
--(Node*) removeChild:(Node*) oldChild;
--(Node*) appendChild:(Node*) newChild;
+-(DOMNode*) replaceChild:(DOMNode*) newChild oldChild:(DOMNode*) oldChild;
+-(DOMNode*) removeChild:(DOMNode*) oldChild;
+-(DOMNode*) appendChild:(DOMNode*) newChild;
 
 @property(nonatomic) BOOL hasChildNodes;
 
--(Node*) cloneNode:(BOOL) deep;
+-(DOMNode*) cloneNode:(BOOL) deep;
 
 // Modified in DOM Level 2:
 -(void) normalize;
