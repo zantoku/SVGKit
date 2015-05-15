@@ -65,7 +65,7 @@
 }
 @synthesize styleSheets;
 
--(CSSStyleDeclaration *)getOverrideStyle:(Element *)element pseudoElt:(NSString *)pseudoElt
+-(CSSStyleDeclaration *)getOverrideStyle:(DOMElement *)element pseudoElt:(NSString *)pseudoElt
 {
 	NSAssert(FALSE, @"Not implemented yet");
 	
@@ -108,7 +108,7 @@
 -(SVGTransform*) createSVGTransform { NSAssert( FALSE, @"Not implemented yet" ); return nil; }
 -(SVGTransform*) createSVGTransformFromMatrix:(SVGMatrix*) matrix { NSAssert( FALSE, @"Not implemented yet" ); return nil; }
 
--(Element*) getElementById:(NSString*) elementId
+-(DOMElement*) getElementById:(NSString*) elementId
 {
 	return [DOMHelperUtilities privateGetElementById:elementId childrenOfElement:self];
 }

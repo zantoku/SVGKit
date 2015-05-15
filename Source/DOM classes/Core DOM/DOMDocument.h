@@ -56,8 +56,8 @@
 
 /** ObjectiveC won't allow this: @class Node; */
 #import "DOMNode.h"
-@class Element;
-#import "Element.h"
+@class DOMElement;
+#import "DOMElement.h"
 @class DOMComment;
 #import "DOMComment.h"
 @class CDATASection;
@@ -79,10 +79,10 @@
 
 @property(nonatomic,retain,readonly) DocumentType*     doctype;
 @property(nonatomic,retain,readonly) AppleSucksDOMImplementation*  implementation;
-@property(nonatomic,retain,readonly) Element*          documentElement;
+@property(nonatomic,retain,readonly) DOMElement*          documentElement;
 
 
--(Element*) createElement:(NSString*) tagName __attribute__((ns_returns_retained));
+-(DOMElement*) createElement:(NSString*) tagName __attribute__((ns_returns_retained));
 -(DocumentFragment*) createDocumentFragment __attribute__((ns_returns_retained));
 -(DOMText*) createTextNode:(NSString*) data __attribute__((ns_returns_retained));
 -(DOMComment*) createComment:(NSString*) data __attribute__((ns_returns_retained));
@@ -97,7 +97,7 @@
 -(DOMNode*) importNode:(DOMNode*) importedNode deep:(BOOL) deep;
 
 // Introduced in DOM Level 2:
--(Element*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName __attribute__((ns_returns_retained));
+-(DOMElement*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName __attribute__((ns_returns_retained));
 
 // Introduced in DOM Level 2:
 -(Attr*) createAttributeNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName;
@@ -106,6 +106,6 @@
 -(NodeList*) getElementsByTagNameNS:(NSString*) namespaceURI localName:(NSString*) localName;
 
 // Introduced in DOM Level 2:
--(Element*) getElementById:(NSString*) elementId;
+-(DOMElement*) getElementById:(NSString*) elementId;
 
 @end

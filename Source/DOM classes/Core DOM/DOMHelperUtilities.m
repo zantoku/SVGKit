@@ -1,7 +1,7 @@
 
 #import "DOMHelperUtilities.h"
 
-#import "Element.h"
+#import "DOMElement.h"
 #import "NodeList.h"
 #import "NodeList+Mutable.h" // needed for access to underlying array, because SVG doesnt specify how lists are made mutable
 
@@ -13,7 +13,7 @@
 +(void) privateGetElementsByName:(NSString*) name inNamespace:(NSString*) namespaceURI childrenOfElement:(DOMNode*) parent addToList:(NodeList*) accumulator
 {
 	/** According to spec, this is only valid for ELEMENT nodes */
-	if( [parent isKindOfClass:[Element class]] )
+	if( [parent isKindOfClass:[DOMElement class]] )
 	{
 		if( namespaceURI != nil && ! [parent.namespaceURI isEqualToString:namespaceURI] )
 		{
@@ -21,7 +21,7 @@
 		}
 		else
 		{
-			Element* parentAsElement = (Element*) parent;
+			DOMElement* parentAsElement = (DOMElement*) parent;
 			
 			/** According to spec, "tag name" for an Element is the value of its .nodeName property; that means SOMETIMES its a qualified name! */
 			BOOL includeThisNode = FALSE;
@@ -55,12 +55,12 @@
 	}
 }
 
-+(Element*) privateGetElementById:(NSString*) idValue childrenOfElement:(DOMNode*) parent
++(DOMElement*) privateGetElementById:(NSString*) idValue childrenOfElement:(DOMNode*) parent
 {
 	/** According to spec, this is only valid for ELEMENT nodes */
-	if( [parent isKindOfClass:[Element class]] )
+	if( [parent isKindOfClass:[DOMElement class]] )
 	{
-		Element* parentAsElement = (Element*) parent;
+		DOMElement* parentAsElement = (DOMElement*) parent;
 
 		if( [[parentAsElement getAttribute:@"id"] isEqualToString:idValue])
 			return parentAsElement;
@@ -75,7 +75,7 @@
 	
 	for( DOMNode* childNode in parent.childNodes )
 	{
-		Element* childResult = [self privateGetElementById:idValue childrenOfElement:childNode];
+		DOMElement* childResult = [self privateGetElementById:idValue childrenOfElement:childNode];
 		
 		if( childResult != nil )
 			return childResult;

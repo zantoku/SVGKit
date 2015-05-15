@@ -10,10 +10,10 @@
 
 #import "CSSStyleDeclaration.h"
 
-@class Element;
+@class DOMElement;
 
 @protocol DocumentCSS <DocumentStyle>
 
--(CSSStyleDeclaration *)getOverrideStyle:(Element *)element pseudoElt:(NSString *)pseudoElt;
+-(CSSStyleDeclaration *)getOverrideStyle:(DOMElement *)element pseudoElt:(NSString *)pseudoElt;
 
 @end

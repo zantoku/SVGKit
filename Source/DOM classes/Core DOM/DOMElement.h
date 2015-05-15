@@ -55,7 +55,7 @@
 @class NodeList;
 #import "NodeList.h"
 
-@interface Element : DOMNode
+@interface DOMElement : DOMNode
 
 @property(nonatomic,retain,readonly) NSString* tagName;
 

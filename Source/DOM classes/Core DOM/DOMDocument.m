@@ -19,9 +19,9 @@
   [super dealloc];
 }
 
--(Element*) createElement:(NSString*) tagName
+-(DOMElement*) createElement:(NSString*) tagName
 {
-	Element* newElement = [[Element alloc] initWithLocalName:tagName attributes:nil];
+	DOMElement* newElement = [[DOMElement alloc] initWithLocalName:tagName attributes:nil];
 	
 	DDLogVerbose( @"[%@] WARNING: SVG Spec, missing feature: if there are known attributes with default values, Attr nodes representing them SHOULD BE automatically created and attached to the element.", [self class] );
 	
@@ -80,9 +80,9 @@
 }
 
 // Introduced in DOM Level 2:
--(Element*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName
+-(DOMElement*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName
 {
-	Element* newElement = [[Element alloc] initWithQualifiedName:qualifiedName inNameSpaceURI:namespaceURI attributes:nil];
+	DOMElement* newElement = [[DOMElement alloc] initWithQualifiedName:qualifiedName inNameSpaceURI:namespaceURI attributes:nil];
 	
 	DDLogVerbose( @"[%@] WARNING: SVG Spec, missing feature: if there are known attributes with default values, Attr nodes representing them SHOULD BE automatically created and attached to the element.", [self class] );
 	
@@ -107,7 +107,7 @@
 }
 
 // Introduced in DOM Level 2:
--(Element*) getElementById:(NSString*) elementId
+-(DOMElement*) getElementById:(NSString*) elementId
 {
 	return [DOMHelperUtilities privateGetElementById:elementId childrenOfElement:self.documentElement];
 }

@@ -1,13 +1,13 @@
-#import "Element.h"
+#import "DOMElement.h"
 
 #import "NamedNodeMap.h"
 #import "DOMHelperUtilities.h"
 
-@interface Element()
+@interface DOMElement()
 @property(nonatomic,retain,readwrite) NSString* tagName;
 @end
 
-@implementation Element
+@implementation DOMElement
 
 @synthesize tagName;
 

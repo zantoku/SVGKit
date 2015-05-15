@@ -17,7 +17,7 @@
 
 /** objc won't allow this: @class Node;*/
 #import "DOMNode.h"
-@class Element;
+@class DOMElement;
 
 @interface Attr : DOMNode
 
@@ -27,7 +27,7 @@
 @property(nonatomic,retain,readonly) NSString* value;
 
 // Introduced in DOM Level 2:
-@property(nonatomic,retain,readonly) Element* ownerElement;
+@property(nonatomic,retain,readonly) DOMElement* ownerElement;
 
 #pragma mark - ObjC methods
 

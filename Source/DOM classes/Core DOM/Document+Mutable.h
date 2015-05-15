@@ -2,6 +2,6 @@
 
 @interface DOMDocument ()
 
-@property(nonatomic,retain,readwrite) Element*          documentElement;
+@property(nonatomic,retain,readwrite) DOMElement*          documentElement;
 
 @end

@@ -16,7 +16,7 @@
  @property(nonatomic,retain,readwrite) NSString* value;
  
  // Introduced in DOM Level 2:
- @property(nonatomic,retain,readwrite) Element* ownerElement;
+ @property(nonatomic,retain,readwrite) DOMElement* ownerElement;
 @end
 
 @implementation Attr

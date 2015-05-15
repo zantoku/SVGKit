@@ -55,7 +55,7 @@
 	super.documentElement = rootElement;
 }
 
--(void)setDocumentElement:(Element *)newDocumentElement
+-(void)setDocumentElement:(DOMElement *)newDocumentElement
 {
 	NSAssert( [newDocumentElement isKindOfClass:[SVGSVGElement class]], @"Cannot set the documentElement property on an SVG doc unless it's of type SVGSVGDocument" );
 	
