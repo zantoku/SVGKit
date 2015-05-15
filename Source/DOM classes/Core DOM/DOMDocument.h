@@ -75,7 +75,7 @@
 @class AppleSucksDOMImplementation;
 #import "AppleSucksDOMImplementation.h"
 
-@interface Document : Node
+@interface DOMDocument : Node
 
 @property(nonatomic,retain,readonly) DocumentType*     doctype;
 @property(nonatomic,retain,readonly) AppleSucksDOMImplementation*  implementation;

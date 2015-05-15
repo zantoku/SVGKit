@@ -56,7 +56,7 @@
 #pragma mark - main class
 @implementation SVGKImage
 
-@synthesize DOMDocument, DOMTree, CALayerTree;
+@synthesize DOMDocument = _DOMDocument, DOMTree = _DOMTree, CALayerTree;
 
 @synthesize scale = _scale;
 @synthesize source;
@@ -232,7 +232,7 @@ static NSMutableDictionary* globalSVGKImageCache;
 		if( parseErrorsAndWarnings.parsedDocument != nil )
 		{
 			self.DOMDocument = parseErrorsAndWarnings.parsedDocument;
-			self.DOMTree = DOMDocument.rootElement;
+			self.DOMTree = self.DOMDocument.rootElement;
 			self.source = parseSource;
 		}
 		else

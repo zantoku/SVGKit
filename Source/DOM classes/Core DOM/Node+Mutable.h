@@ -12,7 +12,7 @@
 @property(nonatomic,retain,readwrite) NodeList* childNodes;
 @property(nonatomic,retain,readwrite) NamedNodeMap* attributes;
 
-@property(nonatomic,assign,readwrite) Document* ownerDocument;
+@property(nonatomic,assign,readwrite) DOMDocument* ownerDocument;
 
 // Introduced in DOM Level 2:
 @property(nonatomic,retain,readwrite) NSString* namespaceURI;

@@ -1,11 +1,11 @@
-#import "Document.h"
+#import "DOMDocument.h"
 #import "Document+Mutable.h"
 
 #import "DOMHelperUtilities.h"
 
 #import "NodeList+Mutable.h" // needed for access to underlying array, because SVG doesnt specify how lists are made mutable
 
-@implementation Document
+@implementation DOMDocument
 
 @synthesize doctype;
 @synthesize implementation;

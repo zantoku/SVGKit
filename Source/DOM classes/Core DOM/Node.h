@@ -76,7 +76,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Document;
+@class DOMDocument;
 /** objc won't allow this: #import "Document.h"*/
 @class NodeList;
 /** objc won't allow this: #import "NodeList.h"*/
@@ -114,7 +114,7 @@ typedef enum DOMNodeType
 @property(nonatomic,retain,readonly) NamedNodeMap* attributes; /*< NB: according to DOM Spec, this is null if the Node is NOT subclassed as an Element */
 
 // Modified in DOM Level 2:
-@property(nonatomic,assign,readonly) Document* ownerDocument;
+@property(nonatomic,assign,readonly) DOMDocument* ownerDocument;
 
 -(Node*) insertBefore:(Node*) newChild refChild:(Node*) refChild;
 

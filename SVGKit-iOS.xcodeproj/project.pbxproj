@@ -96,8 +96,8 @@
 		66E863A71688C2780059C9C4 /* DOMComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863161688C2770059C9C4 /* DOMComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E863A81688C2780059C9C4 /* DOMComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E863171688C2770059C9C4 /* DOMComment.m */; };
 		66E863A91688C2780059C9C4 /* Document+Mutable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863181688C2770059C9C4 /* Document+Mutable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66E863AA1688C2780059C9C4 /* Document.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863191688C2770059C9C4 /* Document.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66E863AB1688C2780059C9C4 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E8631A1688C2770059C9C4 /* Document.m */; };
+		66E863AA1688C2780059C9C4 /* DOMDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863191688C2770059C9C4 /* DOMDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66E863AB1688C2780059C9C4 /* DOMDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E8631A1688C2770059C9C4 /* DOMDocument.m */; };
 		66E863AC1688C2780059C9C4 /* DocumentFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E8631B1688C2770059C9C4 /* DocumentFragment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E863AD1688C2780059C9C4 /* DocumentFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E8631C1688C2770059C9C4 /* DocumentFragment.m */; };
 		66E863AE1688C2780059C9C4 /* DocumentType.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E8631D1688C2770059C9C4 /* DocumentType.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -382,8 +382,8 @@
 		66E863161688C2770059C9C4 /* DOMComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMComment.h; sourceTree = "<group>"; };
 		66E863171688C2770059C9C4 /* DOMComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMComment.m; sourceTree = "<group>"; };
 		66E863181688C2770059C9C4 /* Document+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Document+Mutable.h"; sourceTree = "<group>"; };
-		66E863191688C2770059C9C4 /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
-		66E8631A1688C2770059C9C4 /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		66E863191688C2770059C9C4 /* DOMDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMDocument.h; sourceTree = "<group>"; };
+		66E8631A1688C2770059C9C4 /* DOMDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMDocument.m; sourceTree = "<group>"; };
 		66E8631B1688C2770059C9C4 /* DocumentFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentFragment.h; sourceTree = "<group>"; };
 		66E8631C1688C2770059C9C4 /* DocumentFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentFragment.m; sourceTree = "<group>"; };
 		66E8631D1688C2770059C9C4 /* DocumentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentType.h; sourceTree = "<group>"; };
@@ -730,8 +730,8 @@
 				66988DB5168A004D00EC93C7 /* CSSValue.h */,
 				66988DB6168A004D00EC93C7 /* CSSValue.m */,
 				66E863181688C2770059C9C4 /* Document+Mutable.h */,
-				66E863191688C2770059C9C4 /* Document.h */,
-				66E8631A1688C2770059C9C4 /* Document.m */,
+				66E863191688C2770059C9C4 /* DOMDocument.h */,
+				66E8631A1688C2770059C9C4 /* DOMDocument.m */,
 				666674BD168A536C00486B68 /* DocumentCSS.h */,
 				666674BE168A551300486B68 /* DocumentStyle.h */,
 				666674CB168A58D000486B68 /* StyleSheetList+Mutable.h */,
@@ -1000,7 +1000,7 @@
 				66E863A51688C2780059C9C4 /* CharacterData.h in Headers */,
 				66E863A71688C2780059C9C4 /* DOMComment.h in Headers */,
 				66E863A91688C2780059C9C4 /* Document+Mutable.h in Headers */,
-				66E863AA1688C2780059C9C4 /* Document.h in Headers */,
+				66E863AA1688C2780059C9C4 /* DOMDocument.h in Headers */,
 				66372EEE1695F16A008C6C56 /* DocumentCSS.h in Headers */,
 				66E863AC1688C2780059C9C4 /* DocumentFragment.h in Headers */,
 				66372EEF1695F17F008C6C56 /* DocumentStyle.h in Headers */,
@@ -1263,7 +1263,7 @@
 				66E863A41688C2780059C9C4 /* CDATASection.m in Sources */,
 				66E863A61688C2780059C9C4 /* CharacterData.m in Sources */,
 				66E863A81688C2780059C9C4 /* DOMComment.m in Sources */,
-				66E863AB1688C2780059C9C4 /* Document.m in Sources */,
+				66E863AB1688C2780059C9C4 /* DOMDocument.m in Sources */,
 				66E863AD1688C2780059C9C4 /* DocumentFragment.m in Sources */,
 				66E863AF1688C2780059C9C4 /* DocumentType.m in Sources */,
 				66E863B11688C2780059C9C4 /* DOMHelperUtilities.m in Sources */,

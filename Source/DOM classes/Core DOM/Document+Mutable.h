@@ -1,6 +1,6 @@
-#import "Document.h"
+#import "DOMDocument.h"
 
-@interface Document ()
+@interface DOMDocument ()
 
 @property(nonatomic,retain,readwrite) Element*          documentElement;
 
