@@ -16,10 +16,10 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "DOMNode.h"
-@class DOMElement;
+#import "SVGKDOMNode.h"
+@class SVGKDOMElement;
 
-@interface Attr : DOMNode
+@interface Attr : SVGKDOMNode
 
 /*! NB: The official DOM spec FAILS TO SPECIFY what the value of "name" is */
 @property(nonatomic,retain,readonly) NSString* name;
@@ -27,7 +27,7 @@
 @property(nonatomic,retain,readonly) NSString* value;
 
 // Introduced in DOM Level 2:
-@property(nonatomic,retain,readonly) DOMElement* ownerElement;
+@property(nonatomic,retain,readonly) SVGKDOMElement* ownerElement;
 
 #pragma mark - ObjC methods
 

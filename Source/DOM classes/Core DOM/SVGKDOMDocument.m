@@ -1,11 +1,11 @@
-#import "DOMDocument.h"
+#import "SVGKDOMDocument.h"
 #import "Document+Mutable.h"
 
 #import "DOMHelperUtilities.h"
 
 #import "NodeList+Mutable.h" // needed for access to underlying array, because SVG doesnt specify how lists are made mutable
 
-@implementation DOMDocument
+@implementation SVGKDOMDocument
 
 @synthesize doctype;
 @synthesize implementation;
@@ -19,9 +19,9 @@
   [super dealloc];
 }
 
--(DOMElement*) createElement:(NSString*) tagName
+-(SVGKDOMElement*) createElement:(NSString*) tagName
 {
-	DOMElement* newElement = [[DOMElement alloc] initWithLocalName:tagName attributes:nil];
+	SVGKDOMElement* newElement = [[SVGKDOMElement alloc] initWithLocalName:tagName attributes:nil];
 	
 	DDLogVerbose( @"[%@] WARNING: SVG Spec, missing feature: if there are known attributes with default values, Attr nodes representing them SHOULD BE automatically created and attached to the element.", [self class] );
 	
@@ -33,14 +33,14 @@
 	return [[DocumentFragment alloc] init];
 }
 
--(DOMText*) createTextNode:(NSString*) data
+-(SVGKDOMText*) createTextNode:(NSString*) data
 {
-	return [[DOMText alloc] initWithValue:data];
+	return [[SVGKDOMText alloc] initWithValue:data];
 }
 
--(DOMComment*) createComment:(NSString*) data
+-(SVGKDOMComment*) createComment:(NSString*) data
 {
-	return [[DOMComment alloc] initWithValue:data];
+	return [[SVGKDOMComment alloc] initWithValue:data];
 }
 
 -(CDATASection*) createCDATASection:(NSString*) data
@@ -73,16 +73,16 @@
 }
 
 // Introduced in DOM Level 2:
--(DOMNode*) importNode:(DOMNode*) importedNode deep:(BOOL) deep
+-(SVGKDOMNode*) importNode:(SVGKDOMNode*) importedNode deep:(BOOL) deep
 {
 	NSAssert( FALSE, @"Not implemented." );
 	return nil;
 }
 
 // Introduced in DOM Level 2:
--(DOMElement*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName
+-(SVGKDOMElement*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName
 {
-	DOMElement* newElement = [[DOMElement alloc] initWithQualifiedName:qualifiedName inNameSpaceURI:namespaceURI attributes:nil];
+	SVGKDOMElement* newElement = [[SVGKDOMElement alloc] initWithQualifiedName:qualifiedName inNameSpaceURI:namespaceURI attributes:nil];
 	
 	DDLogVerbose( @"[%@] WARNING: SVG Spec, missing feature: if there are known attributes with default values, Attr nodes representing them SHOULD BE automatically created and attached to the element.", [self class] );
 	
@@ -107,7 +107,7 @@
 }
 
 // Introduced in DOM Level 2:
--(DOMElement*) getElementById:(NSString*) elementId
+-(SVGKDOMElement*) getElementById:(NSString*) elementId
 {
 	return [DOMHelperUtilities privateGetElementById:elementId childrenOfElement:self.documentElement];
 }

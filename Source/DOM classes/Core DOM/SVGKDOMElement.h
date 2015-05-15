@@ -49,13 +49,13 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "DOMNode.h"
+#import "SVGKDOMNode.h"
 @class Attr;
 #import "Attr.h"
 @class NodeList;
 #import "NodeList.h"
 
-@interface DOMElement : DOMNode
+@interface SVGKDOMElement : SVGKDOMNode
 
 @property(nonatomic,retain,readonly) NSString* tagName;
 

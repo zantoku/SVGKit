@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "DOMNode.h"
+#import "SVGKDOMNode.h"
 #import "Node+Mutable.h"
 
 #import "NodeList+Mutable.h"
@@ -14,7 +14,7 @@
 
 #import "NamedNodeMap_Iterable.h" // Needed for the optional (non-SVG spec) "recursive toXML" method
 
-@implementation DOMNode
+@implementation SVGKDOMNode
 
 @synthesize nodeName;
 @synthesize nodeValue;
@@ -183,7 +183,7 @@
 
 #pragma mark - Official DOM method implementations
 
--(DOMNode *)firstChild
+-(SVGKDOMNode *)firstChild
 {
     if( [self.childNodes length] < 1 )
         return nil;
@@ -191,7 +191,7 @@
         return [self.childNodes item:0];
 }
 
--(DOMNode *)lastChild
+-(SVGKDOMNode *)lastChild
 {
     if( [self.childNodes length] < 1 )
         return nil;
@@ -199,7 +199,7 @@
         return [self.childNodes item: [self.childNodes length] - 1];
 }
 
--(DOMNode *)previousSibling
+-(SVGKDOMNode *)previousSibling
 {
     if( self.parentNode == nil )
         return nil;
@@ -214,7 +214,7 @@
     }
 }
 
--(DOMNode *)nextSibling
+-(SVGKDOMNode *)nextSibling
 {
     if( self.parentNode == nil )
         return nil;
@@ -229,7 +229,7 @@
     }
 }
 
--(DOMNode*) insertBefore:(DOMNode*) newChild refChild:(DOMNode*) refChild
+-(SVGKDOMNode*) insertBefore:(SVGKDOMNode*) newChild refChild:(SVGKDOMNode*) refChild
 {
 	if( refChild == nil )
 	{
@@ -244,7 +244,7 @@
 	return newChild;
 }
 
--(DOMNode*) replaceChild:(DOMNode*) newChild oldChild:(DOMNode*) oldChild
+-(SVGKDOMNode*) replaceChild:(SVGKDOMNode*) newChild oldChild:(SVGKDOMNode*) oldChild
 {
 	if( newChild.nodeType == DOMNodeType_DOCUMENT_FRAGMENT_NODE )
 	{
@@ -257,7 +257,7 @@
 		
 		NSAssert( FALSE, @"We should be recursing down the tree to find 'newChild' at any location, and removing it - required by spec - but we have no convenience method for that search, yet" );
 		
-		for( DOMNode* child in newChild.childNodes.internalArray )
+		for( SVGKDOMNode* child in newChild.childNodes.internalArray )
 		{
 			[self.childNodes.internalArray insertObject:child atIndex:oldIndex++];
 		}
@@ -277,7 +277,7 @@
 		return oldChild;
 	}
 }
--(DOMNode*) removeChild:(DOMNode*) oldChild
+-(SVGKDOMNode*) removeChild:(SVGKDOMNode*) oldChild
 {
 	[self.childNodes.internalArray removeObject:oldChild];
 	
@@ -286,7 +286,7 @@
 	return oldChild;
 }
 
--(DOMNode*) appendChild:(DOMNode*) newChild
+-(SVGKDOMNode*) appendChild:(SVGKDOMNode*) newChild
 {
 	[self.childNodes.internalArray removeObject:newChild]; // required by spec
 	[self.childNodes.internalArray addObject:newChild];
@@ -301,7 +301,7 @@
 	return (self.childNodes.length > 0);
 }
 
--(DOMNode*) cloneNode:(BOOL) deep
+-(SVGKDOMNode*) cloneNode:(BOOL) deep
 {
 	NSAssert( FALSE, @"Not implemented yet - read the spec. Sounds tricky. I'm too tired, and would probably screw it up right now" );
 	return nil;
@@ -357,7 +357,7 @@
 			 "concatenation of the textContent attribute value of every child node, excluding COMMENT_NODE and PROCESSING_INSTRUCTION_NODE nodes. This is the empty string if the node has no children."
 			 */
 			NSMutableString* stringAccumulator = [[[NSMutableString alloc] init] autorelease];
-			for( DOMNode* subNode in self.childNodes.internalArray )
+			for( SVGKDOMNode* subNode in self.childNodes.internalArray )
 			{
 				NSString* subText = subNode.textContent; // don't call this method twice; it's expensive to calculate!
 				if( subText != nil ) // Yes, really: Apple docs require that you never append a nil substring. Sigh
@@ -497,7 +497,7 @@
 	/** ... output them, making them 'active' in the output tree */
 	for( NSString* xmlnsNodeName in xmlnsNodemap )
 	{
-		DOMNode* attribute = [xmlnsNodemap objectForKey:xmlnsNodeName];
+		SVGKDOMNode* attribute = [xmlnsNodemap objectForKey:xmlnsNodeName];
 		
 		if( [prefixesByACTIVENamespace objectForKey:xmlnsNodeName] == nil )
 		{
@@ -544,7 +544,7 @@
 		NSDictionary* nodeMap = [nodeMapsByNamespace objectForKey:namespace];
 		for( NSString* nodeNameFromMap in nodeMap )
 		{
-			DOMNode* attribute = [nodeMap objectForKey:nodeNameFromMap];
+			SVGKDOMNode* attribute = [nodeMap objectForKey:nodeNameFromMap];
 			
 			attribute.prefix = localPrefix; /** Overrides any default pre-existing value */
 			
@@ -605,7 +605,7 @@
 		case DOMNodeType_DOCUMENT_NODE:
 		case DOMNodeType_ELEMENT_NODE:
 		{
-			for( DOMNode* child in self.childNodes )
+			for( SVGKDOMNode* child in self.childNodes )
 			{
 				[child appendXMLToString:outputString availableNamespaces:prefixesByKNOWNNamespace activeNamespaces:prefixesByACTIVENamespace];
 			}

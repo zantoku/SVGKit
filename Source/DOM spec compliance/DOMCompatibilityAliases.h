@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 na. All rights reserved.
 //
 
-#import "DOMDocument.h"
-#import "DOMComment.h"
-#import "DOMText.h"
-#import "DOMNode.h"
-#import "DOMElement.h"
+#import "SVGKDOMDocument.h"
+#import "SVGKDOMComment.h"
+#import "SVGKDOMText.h"
+#import "SVGKDOMNode.h"
+#import "SVGKDOMElement.h"
 
-@compatibility_alias Element DOMElement;
-@compatibility_alias Node DOMNode;
-@compatibility_alias Document DOMDocument;
-@compatibility_alias Comment DOMComment;
-@compatibility_alias Text DOMText;
+@compatibility_alias Element SVGKDOMElement;
+@compatibility_alias Node SVGKDOMNode;
+@compatibility_alias Document SVGKDOMDocument;
+@compatibility_alias Comment SVGKDOMComment;
+@compatibility_alias Text SVGKDOMText;

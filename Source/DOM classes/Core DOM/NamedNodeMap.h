@@ -27,29 +27,29 @@
 
 #import <Foundation/Foundation.h>
 
-@class DOMNode;
-#import "DOMNode.h"
+@class SVGKDOMNode;
+#import "SVGKDOMNode.h"
 
 @interface NamedNodeMap : NSObject </** needed so we can output SVG text in the [Node appendToXML:..] methods */ NSCopying>
 
--(DOMNode*) getNamedItem:(NSString*) name;
--(DOMNode*) setNamedItem:(DOMNode*) arg;
--(DOMNode*) removeNamedItem:(NSString*) name;
--(DOMNode*) item:(unsigned long) index;
+-(SVGKDOMNode*) getNamedItem:(NSString*) name;
+-(SVGKDOMNode*) setNamedItem:(SVGKDOMNode*) arg;
+-(SVGKDOMNode*) removeNamedItem:(NSString*) name;
+-(SVGKDOMNode*) item:(unsigned long) index;
 
 @property(readonly) unsigned long length;
 
 // Introduced in DOM Level 2:
--(DOMNode*) getNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName;
+-(SVGKDOMNode*) getNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName;
 
 // Introduced in DOM Level 2:
--(DOMNode*) setNamedItemNS:(DOMNode*) arg;
+-(SVGKDOMNode*) setNamedItemNS:(SVGKDOMNode*) arg;
 
 // Introduced in DOM Level 2:
--(DOMNode*) removeNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName;
+-(SVGKDOMNode*) removeNamedItemNS:(NSString*) namespaceURI localName:(NSString*) localName;
 
 #pragma mark - MISSING METHOD FROM SVG Spec, without which you cannot parse documents (don't understand how they intended you to fulfil the spec without this method)
 
--(DOMNode*) setNamedItemNS:(DOMNode*) arg inNodeNamespace:(NSString*) nodesNamespace;
+-(SVGKDOMNode*) setNamedItemNS:(SVGKDOMNode*) arg inNodeNamespace:(NSString*) nodesNamespace;
 
 @end

@@ -37,6 +37,6 @@
 -(DocumentType*) createDocumentType:(NSString*) qualifiedName publicId:(NSString*) publicId systemId:(NSString*) systemId;
 
 // Introduced in DOM Level 2:
--(DOMDocument*) createDocument:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName doctype:(DocumentType*) doctype;
+-(SVGKDOMDocument*) createDocument:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName doctype:(DocumentType*) doctype;
 
 @end

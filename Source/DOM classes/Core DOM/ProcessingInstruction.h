@@ -14,9 +14,9 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "DOMNode.h"
+#import "SVGKDOMNode.h"
 
-@interface ProcessingInstruction : DOMNode
+@interface ProcessingInstruction : SVGKDOMNode
 @property(nonatomic,retain,readonly) NSString* target;
 @property(nonatomic,retain,readonly) NSString* data;
 

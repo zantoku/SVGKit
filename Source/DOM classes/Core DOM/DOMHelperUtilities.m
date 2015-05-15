@@ -1,7 +1,7 @@
 
 #import "DOMHelperUtilities.h"
 
-#import "DOMElement.h"
+#import "SVGKDOMElement.h"
 #import "NodeList.h"
 #import "NodeList+Mutable.h" // needed for access to underlying array, because SVG doesnt specify how lists are made mutable
 
@@ -10,10 +10,10 @@
 /*! This useful method provides both the DOM level 1 and the DOM level 2 implementations of searching the tree for a node - because THEY ARE DIFFERENT
  yet very similar
  */
-+(void) privateGetElementsByName:(NSString*) name inNamespace:(NSString*) namespaceURI childrenOfElement:(DOMNode*) parent addToList:(NodeList*) accumulator
++(void) privateGetElementsByName:(NSString*) name inNamespace:(NSString*) namespaceURI childrenOfElement:(SVGKDOMNode*) parent addToList:(NodeList*) accumulator
 {
 	/** According to spec, this is only valid for ELEMENT nodes */
-	if( [parent isKindOfClass:[DOMElement class]] )
+	if( [parent isKindOfClass:[SVGKDOMElement class]] )
 	{
 		if( namespaceURI != nil && ! [parent.namespaceURI isEqualToString:namespaceURI] )
 		{
@@ -21,7 +21,7 @@
 		}
 		else
 		{
-			DOMElement* parentAsElement = (DOMElement*) parent;
+			SVGKDOMElement* parentAsElement = (SVGKDOMElement*) parent;
 			
 			/** According to spec, "tag name" for an Element is the value of its .nodeName property; that means SOMETIMES its a qualified name! */
 			BOOL includeThisNode = FALSE;
@@ -49,18 +49,18 @@
 		}
 	}
 	
-	for( DOMNode* childNode in parent.childNodes )
+	for( SVGKDOMNode* childNode in parent.childNodes )
 	{
 		[self privateGetElementsByName:name inNamespace:namespaceURI childrenOfElement:childNode addToList:accumulator];
 	}
 }
 
-+(DOMElement*) privateGetElementById:(NSString*) idValue childrenOfElement:(DOMNode*) parent
++(SVGKDOMElement*) privateGetElementById:(NSString*) idValue childrenOfElement:(SVGKDOMNode*) parent
 {
 	/** According to spec, this is only valid for ELEMENT nodes */
-	if( [parent isKindOfClass:[DOMElement class]] )
+	if( [parent isKindOfClass:[SVGKDOMElement class]] )
 	{
-		DOMElement* parentAsElement = (DOMElement*) parent;
+		SVGKDOMElement* parentAsElement = (SVGKDOMElement*) parent;
 
 		if( [[parentAsElement getAttribute:@"id"] isEqualToString:idValue])
 			return parentAsElement;
@@ -73,9 +73,9 @@
 #endif
 	}
 	
-	for( DOMNode* childNode in parent.childNodes )
+	for( SVGKDOMNode* childNode in parent.childNodes )
 	{
-		DOMElement* childResult = [self privateGetElementById:idValue childrenOfElement:childNode];
+		SVGKDOMElement* childResult = [self privateGetElementById:idValue childrenOfElement:childNode];
 		
 		if( childResult != nil )
 			return childResult;

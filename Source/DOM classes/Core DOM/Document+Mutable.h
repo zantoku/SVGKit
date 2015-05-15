@@ -1,7 +1,7 @@
-#import "DOMDocument.h"
+#import "SVGKDOMDocument.h"
 
-@interface DOMDocument ()
+@interface SVGKDOMDocument ()
 
-@property(nonatomic,retain,readwrite) DOMElement*          documentElement;
+@property(nonatomic,retain,readwrite) SVGKDOMElement*          documentElement;
 
 @end

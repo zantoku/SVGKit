@@ -8,10 +8,10 @@
  */
 #import <Foundation/Foundation.h>
 
-@class DOMText;
-#import "DOMText.h"
+@class SVGKDOMText;
+#import "SVGKDOMText.h"
 
-@interface CDATASection : DOMText
+@interface CDATASection : SVGKDOMText
 
 - (id)initWithValue:(NSString*) v;
 

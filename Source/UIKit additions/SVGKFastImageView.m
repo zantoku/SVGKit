@@ -33,7 +33,7 @@
 		return FALSE;
 	else
 	{
-		for( DOMNode* n in element.childNodes )
+		for( SVGKDOMNode* n in element.childNodes )
 		{
 			if( [n isKindOfClass:[SVGElement class]])
 			{

@@ -7,7 +7,7 @@
  */
 #import <QuartzCore/QuartzCore.h>
 
-#import "DOMElement.h"
+#import "SVGKDOMElement.h"
 #import "Node+Mutable.h"
 #import "SVGStylable.h"
 #import "SVGLength.h"
@@ -17,7 +17,7 @@
 @class SVGSVGElement;
 //obj-c's compiler sucks, and doesn't allow this line: #import "SVGSVGElement.h"
 
-@interface SVGElement : DOMElement <SVGStylable>
+@interface SVGElement : SVGKDOMElement <SVGStylable>
 
 @property (nonatomic, readwrite, retain) NSString *identifier; // 'id' is reserved in Obj-C, so we have to break SVG Spec here, slightly
 @property (nonatomic, retain) NSString* xmlbase;

@@ -76,7 +76,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class DOMDocument;
+@class SVGKDOMDocument;
 /** objc won't allow this: #import "Document.h"*/
 @class NodeList;
 /** objc won't allow this: #import "NodeList.h"*/
@@ -99,32 +99,32 @@ typedef enum DOMNodeType
 	DOMNodeType_NOTATION_NODE                  = 12
 } DOMNodeType;
 
-@interface DOMNode : NSObject
+@interface SVGKDOMNode : NSObject
 
 @property(nonatomic,retain,readonly) NSString* nodeName;
 @property(nonatomic,retain,readonly) NSString* nodeValue;
 	
 @property(nonatomic,readonly) DOMNodeType nodeType;
-@property(nonatomic,assign,readonly) DOMNode* parentNode;
+@property(nonatomic,assign,readonly) SVGKDOMNode* parentNode;
 @property(nonatomic,retain,readonly) NodeList* childNodes;
-@property(nonatomic,assign,readonly) DOMNode* firstChild;
-@property(nonatomic,assign,readonly) DOMNode* lastChild;
-@property(nonatomic,assign,readonly) DOMNode* previousSibling;
-@property(nonatomic,assign,readonly) DOMNode* nextSibling;
+@property(nonatomic,assign,readonly) SVGKDOMNode* firstChild;
+@property(nonatomic,assign,readonly) SVGKDOMNode* lastChild;
+@property(nonatomic,assign,readonly) SVGKDOMNode* previousSibling;
+@property(nonatomic,assign,readonly) SVGKDOMNode* nextSibling;
 @property(nonatomic,retain,readonly) NamedNodeMap* attributes; /*< NB: according to DOM Spec, this is null if the Node is NOT subclassed as an Element */
 
 // Modified in DOM Level 2:
-@property(nonatomic,assign,readonly) DOMDocument* ownerDocument;
+@property(nonatomic,assign,readonly) SVGKDOMDocument* ownerDocument;
 
--(DOMNode*) insertBefore:(DOMNode*) newChild refChild:(DOMNode*) refChild;
+-(SVGKDOMNode*) insertBefore:(SVGKDOMNode*) newChild refChild:(SVGKDOMNode*) refChild;
 
--(DOMNode*) replaceChild:(DOMNode*) newChild oldChild:(DOMNode*) oldChild;
--(DOMNode*) removeChild:(DOMNode*) oldChild;
--(DOMNode*) appendChild:(DOMNode*) newChild;
+-(SVGKDOMNode*) replaceChild:(SVGKDOMNode*) newChild oldChild:(SVGKDOMNode*) oldChild;
+-(SVGKDOMNode*) removeChild:(SVGKDOMNode*) oldChild;
+-(SVGKDOMNode*) appendChild:(SVGKDOMNode*) newChild;
 
 @property(nonatomic) BOOL hasChildNodes;
 
--(DOMNode*) cloneNode:(BOOL) deep;
+-(SVGKDOMNode*) cloneNode:(BOOL) deep;
 
 // Modified in DOM Level 2:
 -(void) normalize;

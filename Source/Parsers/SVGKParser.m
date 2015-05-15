@@ -23,7 +23,7 @@
 
 #import "SVGDocument_Mutable.h" // so we can modify the SVGDocuments we're parsing
 
-#import "DOMNode.h"
+#import "SVGKDOMNode.h"
 
 #import "SVGKSourceString.h"
 #import "SVGKSourceURL.h"
@@ -439,7 +439,7 @@ static void processingInstructionSAX (void * ctx,
 		/** Send any partially-parsed text data into the old node that is now the parent node,
 		 then change the "storing chars" flag to fit the new node */
 		
-		DOMText *tNode = [[[DOMText alloc] initWithValue:_storedChars] autorelease];
+		SVGKDOMText *tNode = [[[SVGKDOMText alloc] initWithValue:_storedChars] autorelease];
 		
 		[_parentOfCurrentNode appendChild:tNode];
 		
@@ -488,7 +488,7 @@ static void processingInstructionSAX (void * ctx,
 			[_stackOfParserExtensions addObject:subParser];
 			
 			/** Parser Extenstion creates a node for us */
-			DOMNode* subParserResult = [subParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
+			SVGKDOMNode* subParserResult = [subParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
 			
 #if DEBUG_XML_PARSER
 			DDLogVerbose(@"[%@] tag: <%@:%@> id=%@ -- handled by subParser: %@", [self class], prefix, name, ([((Attr*)[attributeObjects objectForKey:@"id"]) value] != nil?[((Attr*)[attributeObjects objectForKey:@"id"]) value]:@"(none)"), subParser );
@@ -526,7 +526,7 @@ static void processingInstructionSAX (void * ctx,
 	[_stackOfParserExtensions addObject:eventualParser];
 	
 	/** Parser Extenstion creates a node for us */
-	DOMNode* subParserResult = [eventualParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
+	SVGKDOMNode* subParserResult = [eventualParser handleStartElement:name document:source namePrefix:prefix namespaceURI:XMLNSURI attributes:attributeObjects parseResult:self.currentParseRun parentNode:_parentOfCurrentNode];
 	
 #if DEBUG_XML_PARSER
 	DDLogVerbose(@"[%@] tag: <%@:%@> id=%@ -- handled by subParser: %@", [self class], prefix, name, ([((Attr*)[attributeObjects objectForKey:@"id"]) value] != nil?[((Attr*)[attributeObjects objectForKey:@"id"]) value]:@"(none)"), eventualParser );
@@ -704,7 +704,7 @@ static void startElementSAX (void *ctx, const xmlChar *localname, const xmlChar 
 	{
 		/** Send any parsed text data into the node-we're-closing */
 		
-		DOMText *tNode = [[[DOMText alloc] initWithValue:_storedChars] autorelease];
+		SVGKDOMText *tNode = [[[SVGKDOMText alloc] initWithValue:_storedChars] autorelease];
 		
 		[_parentOfCurrentNode appendChild:tNode];
 		

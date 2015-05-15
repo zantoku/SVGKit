@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "DOMText.h"
+#import "SVGKDOMText.h"
 
-@implementation DOMText
+@implementation SVGKDOMText
 
 - (id)initWithValue:(NSString*) v
 {
@@ -18,7 +18,7 @@
     }
     return self;
 }
--(DOMText*) splitText:(unsigned long) offset;
+-(SVGKDOMText*) splitText:(unsigned long) offset;
 {
 	NSAssert( FALSE, @"Not implemented yet" );
 	return nil;

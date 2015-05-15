@@ -61,7 +61,7 @@
 #import "SVGTransform.h"
 
 #pragma mark - a few raw DOM imports are required for SVG DOM, but not many
-#import "DOMElement.h"
+#import "SVGKDOMElement.h"
 #import "NodeList.h"
 
 #import "ConverterSVGToCALayer.h"
@@ -114,7 +114,7 @@
 -(SVGRect) createSVGRect;
 -(SVGTransform*) createSVGTransform;
 -(SVGTransform*) createSVGTransformFromMatrix:(SVGMatrix*) matrix;
--(DOMElement*) getElementById:(NSString*) elementId;
+-(SVGKDOMElement*) getElementById:(NSString*) elementId;
 
 #pragma mark - below here VIOLATES THE STANDARD, but needs to be CAREFULLY merged with spec
 

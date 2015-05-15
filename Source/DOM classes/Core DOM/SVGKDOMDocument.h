@@ -55,11 +55,11 @@
 #import <Foundation/Foundation.h>
 
 /** ObjectiveC won't allow this: @class Node; */
-#import "DOMNode.h"
-@class DOMElement;
-#import "DOMElement.h"
-@class DOMComment;
-#import "DOMComment.h"
+#import "SVGKDOMNode.h"
+@class SVGKDOMElement;
+#import "SVGKDOMElement.h"
+@class SVGKDOMComment;
+#import "SVGKDOMComment.h"
 @class CDATASection;
 #import "CDATASection.h"
 @class DocumentFragment;
@@ -75,17 +75,17 @@
 @class AppleSucksDOMImplementation;
 #import "AppleSucksDOMImplementation.h"
 
-@interface DOMDocument : DOMNode
+@interface SVGKDOMDocument : SVGKDOMNode
 
 @property(nonatomic,retain,readonly) DocumentType*     doctype;
 @property(nonatomic,retain,readonly) AppleSucksDOMImplementation*  implementation;
-@property(nonatomic,retain,readonly) DOMElement*          documentElement;
+@property(nonatomic,retain,readonly) SVGKDOMElement*          documentElement;
 
 
--(DOMElement*) createElement:(NSString*) tagName __attribute__((ns_returns_retained));
+-(SVGKDOMElement*) createElement:(NSString*) tagName __attribute__((ns_returns_retained));
 -(DocumentFragment*) createDocumentFragment __attribute__((ns_returns_retained));
--(DOMText*) createTextNode:(NSString*) data __attribute__((ns_returns_retained));
--(DOMComment*) createComment:(NSString*) data __attribute__((ns_returns_retained));
+-(SVGKDOMText*) createTextNode:(NSString*) data __attribute__((ns_returns_retained));
+-(SVGKDOMComment*) createComment:(NSString*) data __attribute__((ns_returns_retained));
 -(CDATASection*) createCDATASection:(NSString*) data __attribute__((ns_returns_retained));
 -(ProcessingInstruction*) createProcessingInstruction:(NSString*) target data:(NSString*) data __attribute__((ns_returns_retained));
 -(Attr*) createAttribute:(NSString*) data __attribute__((ns_returns_retained));
@@ -94,10 +94,10 @@
 -(NodeList*) getElementsByTagName:(NSString*) data;
 
 // Introduced in DOM Level 2:
--(DOMNode*) importNode:(DOMNode*) importedNode deep:(BOOL) deep;
+-(SVGKDOMNode*) importNode:(SVGKDOMNode*) importedNode deep:(BOOL) deep;
 
 // Introduced in DOM Level 2:
--(DOMElement*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName __attribute__((ns_returns_retained));
+-(SVGKDOMElement*) createElementNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName __attribute__((ns_returns_retained));
 
 // Introduced in DOM Level 2:
 -(Attr*) createAttributeNS:(NSString*) namespaceURI qualifiedName:(NSString*) qualifiedName;
@@ -106,6 +106,6 @@
 -(NodeList*) getElementsByTagNameNS:(NSString*) namespaceURI localName:(NSString*) localName;
 
 // Introduced in DOM Level 2:
--(DOMElement*) getElementById:(NSString*) elementId;
+-(SVGKDOMElement*) getElementById:(NSString*) elementId;
 
 @end

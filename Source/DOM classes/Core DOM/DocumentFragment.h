@@ -10,8 +10,8 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "DOMNode.h"
+#import "SVGKDOMNode.h"
 
-@interface DocumentFragment : DOMNode
+@interface DocumentFragment : SVGKDOMNode
 
 @end

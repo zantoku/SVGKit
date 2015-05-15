@@ -1,13 +1,13 @@
-#import "DOMElement.h"
+#import "SVGKDOMElement.h"
 
 #import "NamedNodeMap.h"
 #import "DOMHelperUtilities.h"
 
-@interface DOMElement()
+@interface SVGKDOMElement()
 @property(nonatomic,retain,readwrite) NSString* tagName;
 @end
 
-@implementation DOMElement
+@implementation SVGKDOMElement
 
 @synthesize tagName;
 

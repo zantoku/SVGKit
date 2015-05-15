@@ -11,7 +11,7 @@
 
 #import "CharacterData.h"
 
-@interface DOMComment : CharacterData
+@interface SVGKDOMComment : CharacterData
 
 - (id)initWithValue:(NSString*) v;
 

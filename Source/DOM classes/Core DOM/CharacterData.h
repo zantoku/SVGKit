@@ -31,9 +31,9 @@
 #import <Foundation/Foundation.h>
 
 /** objc won't allow this: @class Node;*/
-#import "DOMNode.h"
+#import "SVGKDOMNode.h"
 
-@interface CharacterData : DOMNode
+@interface CharacterData : SVGKDOMNode
 
 @property(nonatomic,retain,readonly) NSString* data;
 	
