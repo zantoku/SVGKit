@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "Text.h"
+#import "DOMText.h"
 
-@implementation Text
+@implementation DOMText
 
 - (id)initWithValue:(NSString*) v
 {
@@ -18,7 +18,7 @@
     }
     return self;
 }
--(Text*) splitText:(unsigned long) offset;
+-(DOMText*) splitText:(unsigned long) offset;
 {
 	NSAssert( FALSE, @"Not implemented yet" );
 	return nil;

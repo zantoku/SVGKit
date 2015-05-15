@@ -33,9 +33,9 @@
 	return [[DocumentFragment alloc] init];
 }
 
--(Text*) createTextNode:(NSString*) data
+-(DOMText*) createTextNode:(NSString*) data
 {
-	return [[Text alloc] initWithValue:data];
+	return [[DOMText alloc] initWithValue:data];
 }
 
 -(DOMComment*) createComment:(NSString*) data

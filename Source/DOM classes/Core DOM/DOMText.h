@@ -14,10 +14,10 @@
 @class CharacterData;
 #import "CharacterData.h"
 
-@interface Text : CharacterData
+@interface DOMText : CharacterData
 
 - (id)initWithValue:(NSString*) v;
 
--(Text*) splitText:(unsigned long) offset;
+-(DOMText*) splitText:(unsigned long) offset;
 
 @end

@@ -84,7 +84,7 @@
 
 -(Element*) createElement:(NSString*) tagName __attribute__((ns_returns_retained));
 -(DocumentFragment*) createDocumentFragment __attribute__((ns_returns_retained));
--(Text*) createTextNode:(NSString*) data __attribute__((ns_returns_retained));
+-(DOMText*) createTextNode:(NSString*) data __attribute__((ns_returns_retained));
 -(DOMComment*) createComment:(NSString*) data __attribute__((ns_returns_retained));
 -(CDATASection*) createCDATASection:(NSString*) data __attribute__((ns_returns_retained));
 -(ProcessingInstruction*) createProcessingInstruction:(NSString*) target data:(NSString*) data __attribute__((ns_returns_retained));

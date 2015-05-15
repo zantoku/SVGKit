@@ -8,10 +8,10 @@
  */
 #import <Foundation/Foundation.h>
 
-@class Text;
-#import "Text.h"
+@class DOMText;
+#import "DOMText.h"
 
-@interface CDATASection : Text
+@interface CDATASection : DOMText
 
 - (id)initWithValue:(NSString*) v;
 
