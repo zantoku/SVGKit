@@ -290,7 +290,8 @@
 		00E86D7317415AA000F0FA0A /* SVGKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGKit.m; sourceTree = "<group>"; };
 		036A524A16E87693008C1140 /* NSCharacterSet+SVGKExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+SVGKExtensions.h"; sourceTree = "<group>"; };
 		036A524B16E87693008C1140 /* NSCharacterSet+SVGKExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+SVGKExtensions.m"; sourceTree = "<group>"; };
-		3D114F291B06217C006C5C98 /* DOMCompatibilityAlias.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DOMCompatibilityAlias.h; path = "DOM spec compliance/DOMCompatibilityAlias.h"; sourceTree = "<group>"; };
+		3D114F291B06217C006C5C98 /* DOMCompatibilityAliases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DOMCompatibilityAliases.h; path = "DOM spec compliance/DOMCompatibilityAliases.h"; sourceTree = "<group>"; };
+		3D114F311B0628E3006C5C98 /* SVGKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; indentWidth = 2; path = SVGKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4FD821EE1AC69F6600E419D3 /* SVGSwitchElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGSwitchElement.h; sourceTree = "<group>"; };
 		4FD821EF1AC69F6600E419D3 /* SVGSwitchElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGSwitchElement.m; sourceTree = "<group>"; };
 		55452BF119EC68A200B75A30 /* SVGKit-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SVGKit-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -563,7 +564,7 @@
 		3D114F281B062126006C5C98 /* DOM spec compliance */ = {
 			isa = PBXGroup;
 			children = (
-				3D114F291B06217C006C5C98 /* DOMCompatibilityAlias.h */,
+				3D114F291B06217C006C5C98 /* DOMCompatibilityAliases.h */,
 			);
 			name = "DOM spec compliance";
 			sourceTree = "<group>";
@@ -620,6 +621,7 @@
 		6639618316145D0400E58CCA = {
 			isa = PBXGroup;
 			children = (
+				3D114F311B0628E3006C5C98 /* SVGKit.podspec */,
 				6639633E16145D7700E58CCA /* EXTERNAL REFERENCES */,
 				6649E05E16172CE200AFE92A /* SVGKit-iOS */,
 				55452BF219EC68A200B75A30 /* SVGKit-iOS Tests */,

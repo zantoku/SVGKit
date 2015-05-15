@@ -27,4 +27,9 @@ Pod::Spec.new do |s|
     'CLANG_CXX_LIBRARY' => 'libc++',
     'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'
   }
+  
+  s.subspec 'DOMSpecCompliance' do |ss|
+    ss.source_files = 'Source/DOM spec compliance/DOMCompatibilityAliases.h'
+  end
+  
 end
