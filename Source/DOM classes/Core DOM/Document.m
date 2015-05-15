@@ -38,9 +38,9 @@
 	return [[Text alloc] initWithValue:data];
 }
 
--(Comment*) createComment:(NSString*) data
+-(DOMComment*) createComment:(NSString*) data
 {
-	return [[Comment alloc] initWithValue:data];
+	return [[DOMComment alloc] initWithValue:data];
 }
 
 -(CDATASection*) createCDATASection:(NSString*) data

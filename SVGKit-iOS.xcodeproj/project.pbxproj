@@ -93,8 +93,8 @@
 		66E863A41688C2780059C9C4 /* CDATASection.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E863131688C2770059C9C4 /* CDATASection.m */; };
 		66E863A51688C2780059C9C4 /* CharacterData.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863141688C2770059C9C4 /* CharacterData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E863A61688C2780059C9C4 /* CharacterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E863151688C2770059C9C4 /* CharacterData.m */; };
-		66E863A71688C2780059C9C4 /* Comment.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863161688C2770059C9C4 /* Comment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		66E863A81688C2780059C9C4 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E863171688C2770059C9C4 /* Comment.m */; };
+		66E863A71688C2780059C9C4 /* DOMComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863161688C2770059C9C4 /* DOMComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66E863A81688C2780059C9C4 /* DOMComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E863171688C2770059C9C4 /* DOMComment.m */; };
 		66E863A91688C2780059C9C4 /* Document+Mutable.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863181688C2770059C9C4 /* Document+Mutable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E863AA1688C2780059C9C4 /* Document.h in Headers */ = {isa = PBXBuildFile; fileRef = 66E863191688C2770059C9C4 /* Document.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		66E863AB1688C2780059C9C4 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E8631A1688C2770059C9C4 /* Document.m */; };
@@ -265,13 +265,6 @@
 			remoteGlobalIDString = 2A37F97718E37270009FAAA7;
 			remoteInfo = CocoaLumberjack;
 		};
-		D320E8CA1ACCFA1F00BD4E72 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D320E8C31ACCFA1F00BD4E72 /* Lumberjack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2A37F9DA18E37536009FAAA7;
-			remoteInfo = LibTest;
-		};
 		D320E8CD1ACCFAA700BD4E72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D320E8C31ACCFA1F00BD4E72 /* Lumberjack.xcodeproj */;
@@ -385,8 +378,8 @@
 		66E863131688C2770059C9C4 /* CDATASection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDATASection.m; sourceTree = "<group>"; };
 		66E863141688C2770059C9C4 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
 		66E863151688C2770059C9C4 /* CharacterData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterData.m; sourceTree = "<group>"; };
-		66E863161688C2770059C9C4 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		66E863171688C2770059C9C4 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		66E863161688C2770059C9C4 /* DOMComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOMComment.h; sourceTree = "<group>"; };
+		66E863171688C2770059C9C4 /* DOMComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOMComment.m; sourceTree = "<group>"; };
 		66E863181688C2770059C9C4 /* Document+Mutable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Document+Mutable.h"; sourceTree = "<group>"; };
 		66E863191688C2770059C9C4 /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		66E8631A1688C2770059C9C4 /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
@@ -705,8 +698,8 @@
 				66E863131688C2770059C9C4 /* CDATASection.m */,
 				66E863141688C2770059C9C4 /* CharacterData.h */,
 				66E863151688C2770059C9C4 /* CharacterData.m */,
-				66E863161688C2770059C9C4 /* Comment.h */,
-				66E863171688C2770059C9C4 /* Comment.m */,
+				66E863161688C2770059C9C4 /* DOMComment.h */,
+				66E863171688C2770059C9C4 /* DOMComment.m */,
 				66988DB1168A001400EC93C7 /* CSSStyleDeclaration.h */,
 				66988DB2168A001400EC93C7 /* CSSStyleDeclaration.m */,
 				66988DB9168A027E00EC93C7 /* CSSRule.h */,
@@ -976,7 +969,6 @@
 			isa = PBXGroup;
 			children = (
 				D320E8C91ACCFA1F00BD4E72 /* libCocoaLumberjack.a */,
-				D320E8CB1ACCFA1F00BD4E72 /* LibTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -996,7 +988,7 @@
 				66E863A11688C2780059C9C4 /* Attr.h in Headers */,
 				66E863A31688C2780059C9C4 /* CDATASection.h in Headers */,
 				66E863A51688C2780059C9C4 /* CharacterData.h in Headers */,
-				66E863A71688C2780059C9C4 /* Comment.h in Headers */,
+				66E863A71688C2780059C9C4 /* DOMComment.h in Headers */,
 				66E863A91688C2780059C9C4 /* Document+Mutable.h in Headers */,
 				66E863AA1688C2780059C9C4 /* Document.h in Headers */,
 				66372EEE1695F16A008C6C56 /* DocumentCSS.h in Headers */,
@@ -1205,13 +1197,6 @@
 			remoteRef = D320E8C81ACCFA1F00BD4E72 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D320E8CB1ACCFA1F00BD4E72 /* LibTest.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = LibTest.app;
-			remoteRef = D320E8CA1ACCFA1F00BD4E72 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1267,7 +1252,7 @@
 				6694B5DE199C10400028CFF6 /* SVGKSourceNSData.m in Sources */,
 				66E863A41688C2780059C9C4 /* CDATASection.m in Sources */,
 				66E863A61688C2780059C9C4 /* CharacterData.m in Sources */,
-				66E863A81688C2780059C9C4 /* Comment.m in Sources */,
+				66E863A81688C2780059C9C4 /* DOMComment.m in Sources */,
 				66E863AB1688C2780059C9C4 /* Document.m in Sources */,
 				66E863AD1688C2780059C9C4 /* DocumentFragment.m in Sources */,
 				66E863AF1688C2780059C9C4 /* DocumentType.m in Sources */,

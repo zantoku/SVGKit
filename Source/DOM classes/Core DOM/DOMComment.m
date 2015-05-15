@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "Comment.h"
+#import "DOMComment.h"
 
-@implementation Comment
+@implementation DOMComment
 
 - (id)initWithValue:(NSString*) v
 {
