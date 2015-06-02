@@ -6,20 +6,22 @@
 #import "SVGGradientElement.h" 
 #endif
 
+static char observeRedraw;
+static char observeTransform;
+
 @interface SVGKFastImageView ()
 @property(nonatomic,readwrite) NSTimeInterval timeIntervalForLastReRenderOfSVGFromMemory;
 @property (nonatomic, retain) NSDate* startRenderTime, * endRenderTime; /*< for debugging, lets you know how long it took to add/generate the CALayer (may have been cached! Only SVGKImage knows true times) */
+@property (nonatomic, retain) NSMutableSet * kvObserving;
 @end
 
 @implementation SVGKFastImageView
-{
-	NSString* internalContextPointerBecauseApplesDemandsIt;
-}
 
 @synthesize image = _image;
 @synthesize tileRatio = _tileRatio;
 @synthesize disableAutoRedrawAtHighestResolution = _disableAutoRedrawAtHighestResolution;
 @synthesize timeIntervalForLastReRenderOfSVGFromMemory = _timeIntervalForLastReRenderOfSVGFromMemory;
+@synthesize kvObserving = _kvObserving;
 
 #if TEMPORARY_WARNING_FOR_APPLES_BROKEN_RENDERINCONTEXT_METHOD
 +(BOOL) svgImageHasNoGradients:(SVGKImage*) image
@@ -87,6 +89,13 @@
     return self;
 }
 
+-(NSMutableSet *)kvObserving {
+    if (_kvObserving == nil) {
+        _kvObserving = [[NSMutableSet alloc] initWithCapacity:4];
+    }
+    return _kvObserving;
+}
+
 - (void)populateFromImage:(SVGKImage*) im
 {
 	if( im == nil )
@@ -110,14 +119,8 @@
 	if( image.scale != 0.0f )
 		NSLog(@"[%@] WARNING: Apple's rendering DOES NOT ALLOW US to render this image correctly using SVGKFastImageView, because Apple's renderInContext method - according to Apple's docs - ignores Apple's own transforms. Until Apple fixes this bug, you should use SVGKLayeredImageView for this particular SVG file (or avoid using scale: you SHOULD INSTEAD be scaling by setting .size on the image, and ensuring that the incoming SVG has either a viewbox or an explicit svg width or svg height)", [self class]);
 #endif
-    
-    if( !internalContextPointerBecauseApplesDemandsIt ) {
-        internalContextPointerBecauseApplesDemandsIt = @"Apple wrote the addObserver / KVO notification API wrong in the first place and now requires developers to pass around pointers to fake objects to make up for the API deficicineces. You have to have one of these pointers per object, and they have to be internal and private. They serve no real value.";
-    }
 	
-    if (_image) {
-        [_image removeObserver:self forKeyPath:@"size" context:internalContextPointerBecauseApplesDemandsIt];
-    }
+    [_image removeObserver:self forKeyPath:@"size" context:&observeRedraw];
     [_image release];
     _image = [image retain];
     
@@ -126,27 +129,34 @@
         ;
     else {
         [self addInternalRedrawOnResizeObservers];
-        [_image addObserver:self forKeyPath:@"size" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
+        [_image addObserver:self forKeyPath:@"size" options:NSKeyValueObservingOptionNew context:&observeRedraw];
     }
     
     /** other obeservers */
-    [self addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
-    [self addObserver:self forKeyPath:@"tileRatio" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
-    [self addObserver:self forKeyPath:@"showBorder" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
+    if (![self.kvObserving containsObject:@"redrawObservers"]) {
+        [self addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:&observeRedraw];
+        [self addObserver:self forKeyPath:@"tileRatio" options:NSKeyValueObservingOptionNew context:&observeRedraw];
+        [self addObserver:self forKeyPath:@"showBorder" options:NSKeyValueObservingOptionNew context:&observeRedraw];
+        [_kvObserving addObject:@"redrawObservers"];
+    }
 }
 
 -(void) addInternalRedrawOnResizeObservers
 {
-	[self addObserver:self forKeyPath:@"layer" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
-	[self.layer addObserver:self forKeyPath:@"transform" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
-	//[self.image addObserver:self forKeyPath:@"size" options:NSKeyValueObservingOptionNew context:internalContextPointerBecauseApplesDemandsIt];
+    if (![self.kvObserving containsObject:@"conditionalRedrawObservers"]) {
+        [self addObserver:self forKeyPath:@"layer" options:NSKeyValueObservingOptionNew context:&observeRedraw];
+        [self.layer addObserver:self forKeyPath:@"transform" options:NSKeyValueObservingOptionNew context:&observeTransform];
+        [_kvObserving addObject:@"conditionalRedrawObservers"];
+    }
 }
 
 -(void) removeInternalRedrawOnResizeObservers
 {
-	[self removeObserver:self  forKeyPath:@"layer" context:internalContextPointerBecauseApplesDemandsIt];
-	[self.layer removeObserver:self forKeyPath:@"transform" context:internalContextPointerBecauseApplesDemandsIt];
-	//[self.image removeObserver:self forKeyPath:@"size" context:internalContextPointerBecauseApplesDemandsIt];
+    if ([self.kvObserving containsObject:@"conditionalRedrawObservers"]) {
+        [self removeObserver:self  forKeyPath:@"layer" context:&observeRedraw];
+        [self.layer removeObserver:self forKeyPath:@"transform" context:&observeTransform];
+        [_kvObserving removeObject:@"conditionalRedrawObservers"];
+    }
 }
 
 -(void)setDisableAutoRedrawAtHighestResolution:(BOOL)newValue
@@ -168,23 +178,20 @@
 
 - (void)dealloc
 {
-	if( self.disableAutoRedrawAtHighestResolution )
-		;
-	else
-		[self removeInternalRedrawOnResizeObservers];
-	
-	[self removeObserver:self forKeyPath:@"image" context:internalContextPointerBecauseApplesDemandsIt];
-	[self removeObserver:self forKeyPath:@"tileRatio" context:internalContextPointerBecauseApplesDemandsIt];
-	[self removeObserver:self forKeyPath:@"showBorder" context:internalContextPointerBecauseApplesDemandsIt];
-    
-    if (_image) {
-        [_image removeObserver:self forKeyPath:@"size" context:internalContextPointerBecauseApplesDemandsIt];
+    [self removeInternalRedrawOnResizeObservers];
+    if ([self.kvObserving containsObject:@"redrawObservers"]) {
+        [self removeObserver:self forKeyPath:@"image" context:&observeRedraw];
+        [self removeObserver:self forKeyPath:@"tileRatio" context:&observeRedraw];
+        [self removeObserver:self forKeyPath:@"showBorder" context:&observeRedraw];
     }
     
+    
+    [_image removeObserver:self forKeyPath:@"size" context:&observeRedraw];
     [_image release];
 	_image = nil;
     self.startRenderTime = nil;
     self.endRenderTime = nil;
+    self.kvObserving = nil;
 	
     [super dealloc];
 }
@@ -192,7 +199,7 @@
 /** Trigger a call to re-display (at higher or lower draw-resolution) (get Apple to call drawRect: again) */
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if( [keyPath isEqualToString:@"transform"] &&  CGSizeEqualToSize( CGSizeZero, self.tileRatio ) )
+	if( context == &observeTransform &&  CGSizeEqualToSize( CGSizeZero, self.tileRatio ) )
 	{
 		/*DDLogVerbose(@"transform changed. Setting layer scale: %2.2f --> %2.2f", self.layer.contentsScale, self.transform.a);
 		 self.layer.contentsScale = self.transform.a;*/
