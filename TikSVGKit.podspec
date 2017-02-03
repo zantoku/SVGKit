@@ -1,10 +1,11 @@
 Pod::Spec.new do |s|
-  s.name        = 'SVGKit'
+  s.name        = 'TikSVGKit'
   s.version     = '2.x'
   s.license     = 'MIT'
   s.platform    = :ios, '5.0'
   s.summary     = "Fork of SVGKit 2.x branch, some specific fixes"
   s.homepage = 'https://github.com/SVGKit/SVGKit'
+  s.author = "karsten@tickaroo.com"
   s.source   = { :git => 'https://github.com/zantoku/SVGKit.git', :branch => "2.x" }
 
   s.ios.source_files = 'Source/*{.h,m}', 'Source/DOM classes/**/*.{h,m}', 'Source/Exporters/*.{h,m}', 'Source/Parsers/**/*.{h,m}', 'Source/QuartzCore additions/**/*.{h,m}', 'Source/Sources/**/*.{h,m}', 'Source/UIKit additions/**/*.{h,m}', 'Source/Unsorted/**/*.{h,m}'
