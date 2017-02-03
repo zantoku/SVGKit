@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name        = 'TikSVGKit'
-  s.version     = '2.0'
+  s.name        = 'SVGKit'
+  s.version     = '2.x'
   s.license     = 'MIT'
   s.platform    = :ios, '5.0'
   s.summary     = "Fork of SVGKit 2.x branch, some specific fixes"
