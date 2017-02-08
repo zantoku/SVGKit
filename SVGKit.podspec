@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name        = 'TikSVGKit'
+  s.name        = 'SVGKit'
   s.version     = '2.0'
   s.license     = 'MIT'
   s.platform    = :ios, '5.0'
