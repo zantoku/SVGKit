@@ -132,76 +132,102 @@ static float cachedDevicePixelsPerInch;
 
 #pragma mark - secret methods needed to provide an implementation on ObjectiveC
 
+
 +(float) pixelsPerInchForCurrentDevice
 {
-	/** Using this as reference: http://en.wikipedia.org/wiki/Retina_Display 
-      */
-	
-	size_t size;
-	sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-	char *machine = malloc(size);
-	sysctlbyname("hw.machine", machine, &size, NULL, 0);
-	NSString *platform = [NSString stringWithUTF8String:machine];
-	free(machine);
-	
-	if( [platform hasPrefix:@"iPhone1"]
-	|| [platform hasPrefix:@"iPhone2"]
-	|| [platform hasPrefix:@"iPhone3"])
-		return 163.0f;
-	
+    /** Using this as reference: http://en.wikipedia.org/wiki/Retina_Display and https://www.theiphonewiki.com/wiki/Models
+     */
+    
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    free(machine);
+    
+    if( [platform hasPrefix:@"iPhone1"]
+       || [platform hasPrefix:@"iPhone2"]
+       || [platform hasPrefix:@"iPhone3"])
+        return 163.0f;
+    
     if( [platform hasPrefix:@"iPhone4"]
        || [platform hasPrefix:@"iPhone5"]
        || [platform hasPrefix:@"iPhone6"]
-       || [platform hasPrefix:@"iPhone7,2"]) {
+       || [platform hasPrefix:@"iPhone7,2"]
+       || [platform hasPrefix:@"iPhone8,1"]
+       || [platform hasPrefix:@"iPhone8,4"]
+       || [platform hasPrefix:@"iPhone9,1"]
+       || [platform hasPrefix:@"iPhone9,3"]) {
         return 326.0f;
     }
     
-    if ( [platform hasPrefix:@"iPhone7,1"]) {
+    if ( [platform hasPrefix:@"iPhone7,1"]
+        || [platform hasPrefix:@"iPhone8,2"]
+        || [platform hasPrefix:@"iPhone9,2"]
+        || [platform hasPrefix:@"iPhone9,4"]) {
         return 401.0f;
     }
-	
-	if( [platform hasPrefix:@"iPhone"]) // catch-all for higher-end devices not yet existing
-	{
-		NSAssert(FALSE, @"Not supported yet: you are using an iPhone that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
-		return 401.0f;
-	}
-	
-	if( [platform hasPrefix:@"iPod1"]
-	   || [platform hasPrefix:@"iPod2"]
-	   || [platform hasPrefix:@"iPod3"])
-		return 163.0f;
-	
-	if( [platform hasPrefix:@"iPod4"]
-	   || [platform hasPrefix:@"iPod5"])
-		return 326.0f;
-	
-	if( [platform hasPrefix:@"iPod"]) // catch-all for higher-end devices not yet existing
-	{
-		NSAssert(FALSE, @"Not supported yet: you are using an iPod that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
-		return 326.0f;
-	}
-	
-	if( [platform hasPrefix:@"iPad1"]
-	|| [platform hasPrefix:@"iPad2"])
-		return 132.0f;
-	if( [platform hasPrefix:@"iPad3"]
-	|| [platform hasPrefix:@"iPad4"]
-    || [platform hasPrefix:@"iPad5"])
-		return 264.0f;
-	if( [platform hasPrefix:@"iPad"]) // catch-all for higher-end devices not yet existing
-	{
-		NSAssert(FALSE, @"Not supported yet: you are using an iPad that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
-		return 264.0f;
-	}
-	
-	if( [platform hasPrefix:@"x86_64"])
-	{
-		DDLogWarn(@"[%@] WARNING: you are running on the simulator; it's impossible for us to calculate centimeter/millimeter/inches units correctly", [self class]);
-		return 132.0f; // Simulator, running on desktop machine
-	}
-	
-	NSAssert(FALSE, @"Cannot determine the PPI values for current device; returning 0.0f - hopefully this will crash your code (you CANNOT run SVG's that use CM/IN/MM etc until you fix this)" );
-	return 0.0f; // Bet you'll get a divide by zero here...
+    
+    if( [platform hasPrefix:@"iPhone"]) // catch-all for higher-end devices not yet existing
+    {
+        NSAssert(FALSE, @"Update your source code or disable assertions: you are using an iPhone that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
+        return 401.0f;
+    }
+    
+    if( [platform hasPrefix:@"iPod1"]
+       || [platform hasPrefix:@"iPod2"]
+       || [platform hasPrefix:@"iPod3"])
+        return 163.0f;
+    
+    if( [platform hasPrefix:@"iPod4"]
+       || [platform hasPrefix:@"iPod5"]
+       || [platform hasPrefix:@"iPod7"])
+        return 326.0f;
+    
+    if( [platform hasPrefix:@"iPod"]) // catch-all for higher-end devices not yet existing
+    {
+        NSAssert(FALSE, @"Update your source code or disable assertions: you are using an iPod that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
+        return 326.0f;
+    }
+    
+    if( [platform hasPrefix:@"iPad5,1"]
+       || [platform hasPrefix:@"iPad5,2"])
+        return 326.0f;
+    
+    if( [platform hasPrefix:@"iPad1"]
+       || [platform hasPrefix:@"iPad2"])
+        return 132.0f;
+    if( [platform hasPrefix:@"iPad3"]
+       || [platform hasPrefix:@"iPad4"]
+       || [platform hasPrefix:@"iPad5,3"]
+       || [platform hasPrefix:@"iPad5,4"]
+       || [platform hasPrefix:@"iPad6"]
+       || [platform hasPrefix:@"iPad7"])
+        return 264.0f;
+    
+    if( [platform hasPrefix:@"iPad"]) // catch-all for higher-end devices not yet existing
+    {
+        NSAssert(FALSE, @"Update your source code or disable assertions: you are using an iPad that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
+        return 264.0f;
+    }
+    
+    if( [platform hasPrefix:@"iWatch1"])
+        return 326.0f;
+    
+    if( [platform hasPrefix:@"iWatch"]) // catch-all for higher-end devices not yet existing
+    {
+        NSAssert(FALSE, @"Update your source code or disable assertions: you are using an iWatch that didn't exist when this code was written, we have no idea what the pixel count per inch is!");
+        return 326.0f;
+    }
+    
+    if( [platform hasPrefix:@"x86_64"])
+    {
+        DDLogWarn(@"[%@] WARNING: you are running on the simulator; it's impossible for us to calculate centimeter/millimeter/inches units correctly", [self class]);
+        return 132.0f; // Simulator, running on desktop machine
+    }
+    
+    NSAssert(FALSE, @"Cannot determine the PPI values for current device; returning 0.0f - hopefully this will crash your code (you CANNOT run SVG's that use CM/IN/MM etc until you fix this)" );
+    return 0.0f; // Bet you'll get a divide by zero here...
 }
 
 @end
